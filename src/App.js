@@ -8,6 +8,7 @@ import './App.css';
 
 
 class App extends Component {
+  
   state ={ 
     user: localStorage.getItem("username")
   }
@@ -33,7 +34,7 @@ class App extends Component {
         <Route path="/login" render={()=> <Login 
         updateUser={this.updateUser} 
         logout={this.logout}/>}/>
-        <Route path="/" component={MainContainer} />
+        <Route path="/profile" component={MainContainer} />
         </Switch>
       </div>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import API from '../services/Backend'
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 
@@ -20,8 +21,8 @@ class Login extends Component {
     .then(payload => {
       localStorage.setItem("token", payload.token)
       localStorage.setItem("username", payload.username)
-      this.props.updateUser(payload.username)
-      window.history.pushState("/", {}, null)
+      this.props.updateUser(payload)
+      this.props.history.push("/profile")
     })
     // need to update state with new user
     // how to handle failed log in?
@@ -56,5 +57,8 @@ class Login extends Component {
         )
     }
 }
+console.log(Login)
+const LoginWithRouter = withRouter(Login)
+console.log(LoginWithRouter)
 
-export default Login;
+export default LoginWithRouter;
