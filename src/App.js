@@ -8,6 +8,7 @@ import './App.css';
 
 
 class App extends Component {
+  
   state ={ 
     user: localStorage.getItem("username")
   }
@@ -26,14 +27,17 @@ class App extends Component {
   }
 
   render(){
+    console.log("I'm the user: ", this.state.user)
     return(
       <div>
         <Header/>
         <Switch>
+        
         <Route path="/login" render={()=> <Login 
         updateUser={this.updateUser} 
-        logout={this.logout}/>}/>
-        <Route path="/" component={MainContainer} />
+        />}/>
+        <Route path="/profile" render={() => localStorage.getItem("username") === null ? <Login/> : <MainContainer user={this.state.user} logout={this.logout}/>} />
+      
         </Switch>
       </div>
     )
