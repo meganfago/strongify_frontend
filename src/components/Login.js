@@ -11,22 +11,26 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+  
     fetch(`${API}/login`, {
       method: 'POST',
       headers: {
-      'Content-Type' : 'application-json'
+      'Content-Type' : 'application/json'
       }, 
       body: JSON.stringify(this.state)
     }).then(resp => resp.json())
     .then(payload => {
+      if (payload.error)
+        this.props.history.push("/")
+      else {
       localStorage.setItem("token", payload.token)
       localStorage.setItem("username", payload.username)
       this.props.updateUser(payload)
-      this.props.history.push("/profile")
+      this.props.history.push("/profile")}
     })
-    // need to update state with new user
-    // how to handle failed log in?
+    
   }
+  
     render(){
         return(
             <div>
@@ -57,8 +61,7 @@ class Login extends Component {
         )
     }
 }
-console.log(Login)
+
 const LoginWithRouter = withRouter(Login)
-console.log(LoginWithRouter)
 
 export default LoginWithRouter;
