@@ -50,7 +50,7 @@ class Login extends Component {
 
                 <Grid.Column verticalAlign='middle'>
 
-                <Button content='Sign up' icon='signup' size='big' />
+                <Button content='Sign up' icon='signup' size='big' href="/signup" />
 
                 </Grid.Column>
             </Grid>
