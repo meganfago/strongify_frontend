@@ -25,7 +25,6 @@ class MainContainer extends Component {
             </Grid.Column>
             <Grid.Column width={7}>
                 {this.props.workouts.map(workout => <WorkoutCard workout={workout}/>)}
-                {/* {this.props.workout_exercise.map(we => <WorkoutCard we={we} />)} */}
             </Grid.Column>
             <Grid.Column width={6}>
                 <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
