@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { Grid, Button, Form } from 'semantic-ui-react'
+import { Grid, Button, Form, TextArea } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 
 class NewWorkout extends Component {
     state = {
-        // user_id: localStorage.getItem("token"),
         workout_name: '',
         exercise_name: '',
         sets: '',
         reps: '',
-        weight: ''
-
+        weight: '',
+        description: '',
+        user_name: localStorage.getItem("username")
     }
 
     handleSubmit = (event) => {
@@ -64,6 +64,11 @@ class NewWorkout extends Component {
                     <input placeholder='Weight' 
                      onChange={(e) => this.setState({weight: e.target.value}) } />               
                 </Form.Field>
+                <Form.Field>
+                    <label>Short Description</label>
+                    <TextArea placeholder='example: Squats, Deadlifts, and Leg Press' 
+                     onChange={(e) => this.setState({description: e.target.value}) } />               
+                </Form.Field>                
             <Button type='submit'>Submit</Button>
             </Form>
                 </Grid.Column>
