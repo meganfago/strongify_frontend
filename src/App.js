@@ -13,13 +13,14 @@ class App extends Component {
   
   state ={ 
     user: localStorage.getItem("username"),
+    user_token: localStorage.getItem("token"),
+    user_id: localStorage.getItem("id"),
     workouts: [],
-    workout_exercises: []
+    user_workouts: []
   }
 
   componentDidMount(){
     this.fetchWorkouts()
-    this.fetchWorkoutExercises()
   }
 
   fetchWorkouts =() => {
@@ -28,15 +29,17 @@ class App extends Component {
     .then(workouts => this.setState({workouts}))
   }
 
-  fetchWorkoutExercises = () => {
-    fetch('http://localhost:3000/workout_exercises')
-    .then(resp => resp.json())
-    .then(workout_exercises => this.setState({workout_exercises}))
-  }
-
   updateUser = (user) => {
     this.setState({
-      user: user
+      user: user,
+      user_token: user.token,
+      user_id: user.id
+    })
+  }
+
+  updateWorkouts = (workout) => {
+    this.setState({
+      workouts: [...this.state.workouts, workout]
     })
   }
 
@@ -49,10 +52,14 @@ class App extends Component {
 
   render(){
     console.log("I'm the user: ", this.state.user)
+    console.log("This is my user id", this.state.user_id)
+
     return(
       <div>
         <Header/>
         <Switch>
+          
+        <Route exact path="/" render={() => <HomePage/>} />
         
         <Route exact path="/login" render={()=> <Login 
         updateUser={this.updateUser} 
@@ -62,15 +69,20 @@ class App extends Component {
         <Login/> : 
         <MainContainer 
         user={this.state.user} 
+        user_id={this.state.user_id}
+        user_token={this.state.user_token}
         workouts={this.state.workouts}
-        workout_exercises={this.state.workout_exercises}
         logout={this.logout}/>} />
 
         <Route exact path="/signup" render={() => <Signup updateUser={this.updateUser} />}/>
 
-        <Route exact path="/newworkout" render={() => <NewWorkout/>}/>
+        <Route exact path="/newworkout" render={() => <NewWorkout 
+        user={this.state.user}
+        user_id={this.state.user_id}
+        updateWorkouts={this.updateWorkouts} 
+        user_token={this.state.user_token}/>}/>
 
-        <Route exact path="/" render={() => <HomePage/>} />
+        
       
         </Switch>
       </div>

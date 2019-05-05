@@ -1,16 +1,37 @@
 import React, { Component } from 'react'
 import { Grid, Button, Form } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 class NewWorkout extends Component {
     state = {
+        // user_id: localStorage.getItem("token"),
         workout_name: '',
         exercise_name: '',
         sets: '',
         reps: '',
+        weight: ''
 
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        fetch(`http://localhost:3000/workouts`, {
+          method: 'POST',
+          headers: {
+          'Content-Type' : 'application/json'
+          }, 
+          body: JSON.stringify(this.state)
+        }).then(resp => resp.json())
+        .then(workout => {
+          this.props.updateWorkouts(workout)
+        })
+          event.target.reset()
+          this.props.history.push(`/profile`)
+        }
+
     render(){
+        console.log("I am the user id", this.props.user_id)
+        console.log("I am the user", localStorage.getItem("username"))
         return(
             <div>
                 <Grid columns={3} padded>
@@ -53,5 +74,5 @@ class NewWorkout extends Component {
     }
 
 }
-
-export default NewWorkout
+const NewWorkoutWithRouter = withRouter(NewWorkout)
+export default NewWorkoutWithRouter;

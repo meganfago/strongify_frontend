@@ -7,6 +7,10 @@ import { Grid, Image, Card, Button } from 'semantic-ui-react'
 
 class MainContainer extends Component {
     render(){
+        console.log("This is my token:", this.props.user_token )
+        console.log("this is my user id", this.props.user_id)
+        console.log("this is my user", this.props.user)
+
         return(
             <div>
              <Grid columns={3} padded>
@@ -18,7 +22,10 @@ class MainContainer extends Component {
                 <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
                 </Card.Content>
                  <Card.Content extra>
-                 <Button color='blue' size="small" href="/newworkout" > New Workout </Button>
+                 <Button color='blue' size="small" href="/newworkout"
+                 user_id={this.props.user_id} 
+                 user={this.props.user}
+                 > New Workout </Button>
                  <Button color='red' onClick={this.props.logout} href="/" > Logout </Button>
                  </Card.Content>
              </Card>
