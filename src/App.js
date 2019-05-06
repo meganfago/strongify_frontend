@@ -7,6 +7,8 @@ import { Route, Switch } from 'react-router-dom'
 import './App.css';
 import NewWorkout from './components/NewWorkout';
 import HomePage from './components/HomePage';
+import WorkoutDetail from './components/WorkoutDetail';
+import PlanPage from './components/PlanPage'
 
 
 class App extends Component {
@@ -15,12 +17,15 @@ class App extends Component {
     user: localStorage.getItem("username"),
     user_token: localStorage.getItem("token"),
     user_id: localStorage.getItem("id"),
-    workouts: [],
-    user_workouts: []
+    user_name: localStorage.getItem("name"),
+    image: localStorage.getItem("image"),
+    workouts: []
+    // user_workouts: []
   }
 
   componentDidMount(){
     this.fetchWorkouts()
+    // this.fetchUserWorkouts()
   }
 
   fetchWorkouts =() => {
@@ -29,11 +34,33 @@ class App extends Component {
     .then(workouts => this.setState({workouts}))
   }
 
+  // fetchUserWorkouts = () =>{
+  //   fetch('http://localhost:3000/user_workouts')
+  //   .then(resp => resp.json())
+  //   .then(user_workouts => this.setState({user_workouts}))
+  // }
+
+  signUpUser = (user) => {
+    this.setState({
+      user: user,
+      user_id: user.id,
+      user_name: user.name    
+    })
+  }
+
   updateUser = (user) => {
     this.setState({
       user: user,
+      user_id: user.id,
       user_token: user.token,
-      user_id: user.id
+      user_name: user.name,
+      image: user.image
+    })
+  }
+
+  updateUserWorkouts = (user_workout) => {
+    this.setState({
+      user_workouts: [...this.state.user_workouts, user_workout]
     })
   }
 
@@ -52,38 +79,52 @@ class App extends Component {
 
   render(){
     console.log("I'm the user: ", this.state.user)
+    console.log("this is the image", this.state.image)
     console.log("This is my user id", this.state.user_id)
+    console.log("this is the user token", this.state.user_token)
 
     return(
       <div>
         <Header/>
         <Switch>
-          
-        <Route exact path="/" render={() => <HomePage/>} />
+
+        <Route exact path="/" render={() => <HomePage/>} /> 
         
         <Route exact path="/login" render={()=> <Login 
         updateUser={this.updateUser} 
         />}/>
 
         <Route exact path="/profile" render={() => localStorage.getItem("username") === null ? 
-        <Login/> : 
+        <HomePage/> : 
         <MainContainer 
         user={this.state.user} 
         user_id={this.state.user_id}
-        user_token={this.state.user_token}
+        image={this.state.image}
+        user_name={this.state.user_name}
         workouts={this.state.workouts}
         logout={this.logout}/>} />
 
-        <Route exact path="/signup" render={() => <Signup updateUser={this.updateUser} />}/>
+        <Route exact path="/signup" render={() => <Signup signUpUser={this.signUpUser} />}/>
 
-        <Route exact path="/newworkout" render={() => <NewWorkout 
+        <Route exact path="/workout/new" render={() => <NewWorkout 
         user={this.state.user}
         user_id={this.state.user_id}
         updateWorkouts={this.updateWorkouts} 
         user_token={this.state.user_token}/>}/>
 
-        
+        <Route exact path="/workouts/:id" render={({ match }) => {
+            let workoutId = parseInt(match.params.id)
+            let workout = this.state.workouts.find(workout => workout.id === workoutId)
+            return workout ? <WorkoutDetail workout={workout} updateUserWorkouts={this.updateUserWorkouts} /> : null;
+          }} /> 
+
+        <Route exact path="/user/plan" render={() => this.state.user_workouts === null ?
+        <MainContainer/> :
+        <PlanPage user={this.state.user}
+        workouts={this.state.workouts}
+        user_id={this.state.user_id} />}/>
       
+
         </Switch>
       </div>
     )
