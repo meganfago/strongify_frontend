@@ -8,10 +8,8 @@ class MainContainer extends Component {
         // console.log("This is my token:", this.props.user_token )
         console.log("this is my user id", this.props.user_id)
         console.log("this is my user", this.props.user)
-        console.log("this is my name", this.props.image)
-       const image = this.props.image === null ?
-            <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png'/> :
-            <Image src={this.props.image}/>
+        console.log("this is my image", this.props.image)
+     
         return(
             <div>
              <Grid columns={4} padded divided='vertically'>
@@ -20,7 +18,7 @@ class MainContainer extends Component {
             <Grid.Column width={3}>
             <Card.Group centered>
             <Card>
-                {image}
+            <Image src={this.props.image}/>
                 <Card.Content>
                 <Card.Header>Welcome, {this.props.user_name}!</Card.Header>
                 <Card.Description>@{this.props.user} </Card.Description>
@@ -31,7 +29,7 @@ class MainContainer extends Component {
                  user={this.props.user}
                  > New Workout </Button>
                 
-                 <Button color='teal' size='small' href='/user/plan' >
+                 <Button color='teal' size='small' href='/myworkouts' >
                     View My Plans
                  </Button>
                  

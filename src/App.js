@@ -12,20 +12,18 @@ import PlanPage from './components/PlanPage'
 
 
 class App extends Component {
-  
-  state ={ 
+  state = { 
     user: localStorage.getItem("username"),
     user_token: localStorage.getItem("token"),
     user_id: localStorage.getItem("id"),
     user_name: localStorage.getItem("name"),
     image: localStorage.getItem("image"),
-    workouts: []
-    // user_workouts: []
+    workouts: [],
+    user_workouts: []
   }
 
   componentDidMount(){
     this.fetchWorkouts()
-    // this.fetchUserWorkouts()
   }
 
   fetchWorkouts =() => {
@@ -33,13 +31,7 @@ class App extends Component {
     .then(resp => resp.json())
     .then(workouts => this.setState({workouts}))
   }
-
-  // fetchUserWorkouts = () =>{
-  //   fetch('http://localhost:3000/user_workouts')
-  //   .then(resp => resp.json())
-  //   .then(user_workouts => this.setState({user_workouts}))
-  // }
-
+  
   signUpUser = (user) => {
     this.setState({
       user: user,
@@ -82,6 +74,7 @@ class App extends Component {
     console.log("this is the image", this.state.image)
     console.log("This is my user id", this.state.user_id)
     console.log("this is the user token", this.state.user_token)
+  
 
     return(
       <div>
@@ -118,10 +111,10 @@ class App extends Component {
             return workout ? <WorkoutDetail workout={workout} updateUserWorkouts={this.updateUserWorkouts} /> : null;
           }} /> 
 
-        <Route exact path="/user/plan" render={() => this.state.user_workouts === null ?
+        <Route exact path="/myworkouts" render={() => this.state.user_workouts === null ?
         <MainContainer/> :
         <PlanPage user={this.state.user}
-        workouts={this.state.workouts}
+        user_token={this.state.user_token}
         user_id={this.state.user_id} />}/>
       
 

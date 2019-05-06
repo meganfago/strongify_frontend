@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Button } from 'semantic-ui-react'
+
 
 
 class PlanItem extends Component{
 
     render(){
-        console.log(this.props.workouts)
 
-        // const workout = this.props.user_workout.id === this.props.workout.id ? this.props.workout : null;
         return(
             
             <div>
+                 <h2>{this.props.workout.workout_name}</h2>
                 <ul>
                     <li>
-                        <h2>hello</h2>
-                        
+                         Sets: {this.props.workout.sets}
                     </li>
+                       
+                        <li>
+                          Description:  {this.props.workout.description}
+                        </li>
+                        
+                    
                 </ul>
                 
+                {/* <Button content='Go Back To Profile' color='blue' size='big' href="/profile" /> */}
             </div>
         )
     }
