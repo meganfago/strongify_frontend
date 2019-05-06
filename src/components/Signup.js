@@ -8,7 +8,8 @@ class Signup extends Component {
         name: '', 
         username: '',
         email: '', 
-        password: ''
+        password: '',
+        image:''
     }
 
     handleSubmit = (event) => {
@@ -21,7 +22,7 @@ class Signup extends Component {
           body: JSON.stringify(this.state)
         }).then(resp => resp.json())
         .then(user => {
-          this.props.updateUser(user)
+          this.props.signUpUser(user)
         })
           event.target.reset()
           this.props.history.push("/login")
@@ -51,6 +52,11 @@ class Signup extends Component {
                     <label>Email</label>
                     <input placeholder='Email' type='email'
                      onChange={(e) => this.setState({email: e.target.value}) } />
+                </Form.Field>
+                <Form.Field>
+                    <label>Image</label>
+                    <input placeholder='Image URL' 
+                     onChange={(e) => this.setState({image: e.target.value}) } />
                 </Form.Field>
                 <Form.Field>
                     <label>Password</label>

@@ -25,6 +25,9 @@ class Login extends Component {
       else {
       localStorage.setItem("token", payload.token)
       localStorage.setItem("username", payload.username)
+      localStorage.setItem("name", payload.name)
+      localStorage.setItem("id", payload.id)
+      localStorage.setItem("image", payload.image)
       this.props.updateUser(payload)
       this.props.history.push("/profile")}
     })
