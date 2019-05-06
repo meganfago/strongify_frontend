@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import WorkoutCard from '../components/WorkoutCard'
-import { Grid, Image, Card, Button } from 'semantic-ui-react'
+import { Grid, Image, Card, Button, Header } from 'semantic-ui-react'
 
 class MainContainer extends Component {
     render(){
@@ -41,7 +41,9 @@ class MainContainer extends Component {
 
 
             <Grid.Column width={9}>
-            <Card.Group >
+            <Header textAlign='center'> All Workouts </Header>
+            <Card.Group centered>
+                
                 {this.props.workouts.map(workout => <WorkoutCard workout={workout}/>)}
                 </Card.Group>
             </Grid.Column>
