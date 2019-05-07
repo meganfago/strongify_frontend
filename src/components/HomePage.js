@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Grid, Image, Button, Container} from 'semantic-ui-react'
-// import Strongify from './src/components/Strongify'
-
 import { withRouter } from 'react-router-dom';
 
 

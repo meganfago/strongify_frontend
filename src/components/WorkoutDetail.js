@@ -28,6 +28,7 @@ class WorkoutDetail extends Component {
 
     render(){
         console.log("this is the workout", this.props.workout)
+        console.log("now i'm the user in workout detail", this.props.user)
      
         return(
             <div>
