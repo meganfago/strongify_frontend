@@ -4,9 +4,7 @@ import { Card } from 'semantic-ui-react'
 
 class WorkoutCard extends Component {
     render(){
-        console.log("This is the workout on the workout card", this.props.workout)
         return(
-            // <Link to={`/workouts/${this.props.workout.id}`} className="item">
             <div class="card">
                 <Card raised color='blue' centered href={`/workouts/${this.props.workout.id}`} >
                

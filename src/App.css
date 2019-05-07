@@ -47,4 +47,11 @@ font-weight: bold;
   font-family: 'Comfortaa', cursive;
 }
 
+.item{
+  border: 1px solid #000000;
+}
+
+.menu{
+  font-family: 'Comfortaa', cursive;
+}
 
