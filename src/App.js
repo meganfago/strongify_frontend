@@ -7,6 +7,7 @@ import NewWorkout from './components/NewWorkout';
 import HomePage from './components/HomePage';
 import WorkoutDetail from './components/WorkoutDetail';
 import PlanPage from './components/PlanPage'
+import CreatedByUserPage from './components/CreatedByUserPage';
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
@@ -100,6 +101,8 @@ class App extends Component {
         <PlanPage  
         user_token={this.state.user_token}
         user_id={this.state.user_id} />}/>
+
+        <Route exact path='/createdbyuser' render={() => <CreatedByUserPage /> }   />
       
 
         </Switch>

@@ -4,16 +4,17 @@ import { Card } from 'semantic-ui-react'
 
 
 
-class PlanItem extends Component{
+class WorkoutItem extends Component{
     render(){
+        
         return(
             <div>
             <Card.Group>
             <Card>
             <Card.Content>
-                <Card.Header>{this.props.workout.workout_name}</Card.Header>
+                {/* <Card.Header>{this.props.workout.workout_name}</Card.Header>
                 <Card.Meta>Created by: @{this.props.workout.user_name}</Card.Meta>
-                <Card.Description>{this.props.workout.description}</Card.Description>
+                <Card.Description>{this.props.workout.description}</Card.Description> */}
             </Card.Content>
             </Card>   
             </Card.Group>    
@@ -23,5 +24,5 @@ class PlanItem extends Component{
 }
 
 
-const PlanItemWithRouter= withRouter(PlanItem)
-export default PlanItemWithRouter;
+const WorkoutItemWithRouter= withRouter(WorkoutItem)
+export default WorkoutItemWithRouter;
