@@ -34,5 +34,17 @@
 
 .card {
   margin: 10px;
+  font-family: 'Comfortaa', cursive;
 }
+
+.header {
+font-family: 'Comfortaa', cursive;
+font-weight: 700;
+font-weight: bold;
+}
+
+.profiletext{
+  font-family: 'Comfortaa', cursive;
+}
+
 

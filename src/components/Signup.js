@@ -22,7 +22,7 @@ class Signup extends Component {
           body: JSON.stringify(this.state)
         }).then(resp => resp.json())
         .then(user => {
-          this.props.signUpUser(user)
+          this.props.updateUser(user)
         })
           event.target.reset()
           this.props.history.push("/login")

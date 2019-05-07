@@ -10,7 +10,7 @@ class Header extends Component {
              <img src={require('../images/icon.png')}/>
               </Menu.Item>  
               <Menu.Item>
-              <h3>Strongify</h3>
+              <h3 class='header'>Strongify</h3>
               </Menu.Item> 
               </Menu>
           </div>
