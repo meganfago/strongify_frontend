@@ -6,7 +6,7 @@ import { Grid, Card, Header, Menu, Image } from 'semantic-ui-react'
 class MainContainer extends Component {
     render(){     
         return(
-            <div class='menu'>
+            <div class='body'>
             <Grid columns={4} padded divided='vertically'>
             <Grid.Column width={2}></Grid.Column>
             <Grid.Column width={3}>
@@ -20,13 +20,13 @@ class MainContainer extends Component {
                     Create a New Workout
                 </Menu.Item>
 
-                <Menu.Item href='/myworkouts' target='_blank'>
+                <Menu.Item href='/myworkouts'>
                  View My Plans
                 </Menu.Item>
 
-                <Menu.Item href='/createdbyuser'>
+                {/* <Menu.Item href='/createdbyuser'>
                     Workouts Created by Me
-                </Menu.Item>
+                </Menu.Item> */}
 
                 <Menu.Item color='red' onClick={this.props.logout} href="/">
                     Logout

@@ -35,6 +35,7 @@
 .card {
   margin: 10px;
   font-family: 'Comfortaa', cursive;
+  box-sizing: border-box;
 }
 
 .header {
@@ -51,7 +52,14 @@ font-weight: bold;
   border: 1px solid #000000;
 }
 
-.menu{
+* {
   font-family: 'Comfortaa', cursive;
 }
+
+.table{
+  margin: 20px;
+}
+
+
+
 
