@@ -6,7 +6,7 @@ class WorkoutCard extends Component {
     render(){
         return(
             <div class="card">
-                <Card raised color='blue' centered href={`/workouts/${this.props.workout.id}`} >
+                <Card color='blue' centered href={`/workouts/${this.props.workout.id}`} >
                
                 <Card.Content>
                     <Card.Header>{this.props.workout.workout_name}</Card.Header>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import WorkoutItem from './WorkoutItem'
 
 class CreatedByUserPage extends Component {
 
@@ -7,24 +8,20 @@ class CreatedByUserPage extends Component {
         my_workouts: []
     }
 
-    // fetchUserWorkouts = () => {
-    //     fetch('http://localhost:3000/createdbyuser', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type' : 'application/json'
-    //         },
-    //         body: JSON.stringify({user_id: this.props.user_id})
-    //         })
-    //         .then(resp => resp.json())
-    //         .then(data => this.setState({
-    //            my_workouts: data.workouts
-    //         }))
-    //     }
+    componentDidMount(){
+        this.fetchUserWorkouts()
+    }
+
+    fetchUserWorkouts = () => {
+        fetch(`http://localhost:3000/users/${localStorage.getItem("id")}`)
+            .then(resp => resp.json())
+            .then(data => console.log("this is in created by user", data))
+        }
     render(){
         
         return(
             <div>
-                <h3>hello from the created by user page</h3>
+                {/* {this.state.my_workouts.map(workout => <WorkoutItem workout={workout}/>)} */}
             </div>
         )
     }
